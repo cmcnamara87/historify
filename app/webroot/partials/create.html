@@ -1,0 +1,97 @@
+<style type="text/css">
+    .small-image {
+        width: 50px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="story entry span4">
+        	<div id='compose'>
+           		<h2>Compose a Story</h2>
+            	<div>
+            	    <input ng-model="model.story.title" type="text" class="input-block-level" placeholder="Title: Enter a Title" />
+            	</div>
+            	<div>
+            	    <input ng-model="model.story.author" type="text" class="input-block-level" placeholder="Author: Enter Your Name" />
+            	</div>
+            	<div>
+            	    <input ng-model="model.story.slugline" type="text" class="input-block-level" placeholder="Slugline: Enter a Summary" style="display:none;" />
+            	</div>
+            	<div>
+            	    <textarea class="input-block-level" placeholder="Description: What is it about?" ng-model="model.story.description"></textarea>
+            	</div>
+            	<div id='inputs'>
+					<a class="btn pull-left"><i class="icon-trash"></i> Clear</a>
+					<a class="btn btn-primary pull-right" ng-click="publishStory(model.story)">Publish Story</a>
+            	</div>
+        	</div>
+            <div>
+                <div ng-repeat="item in model.story.items">
+                    <div class="post entry">
+	                    <h2>{{ item.heading }}</h2>
+	                    <h3>{{ item.title }}</h3>
+	                    <p>{{ item.snippet }}</p>
+	                 </div>
+	                 <div class="post entry">
+	                        <textarea ng-model="item.beforeText" class="input-block-level" placeholder="Comment: "></textarea>
+	                 </div>
+                </div>
+            </div>
+        </div>
+        <div class="span8" style="overflow-y: scroll">
+            <div ng-controller="SearchCtrl">
+            		<div class="row">
+						<div class="span10 offset1">
+							<div id="search">
+								<form ng-submit="doSearch(query)">
+								<input type="text" id="searchtext" ng-model="query" placeholder="Search..." />
+								<button class="btn-primary" id="searchbutton" href="" ng-click="doSearch(query)">Search</button>
+								</form>
+							</div>
+						</div>
+            		</div>
+                        <div ng-show="model.isLoading">
+                        	<div class="overlay">
+                          		<i class="loading icon-spinner"></i>
+                        	</div>
+                        </div>
+                        <div ng-show="!model.isLoading && model.results.length == 0 && query.length">
+                            no results
+                        </div>
+                        
+                        
+                        <div ng-show="!model.selectedResult.snippet.length">
+                            <div map id="map" data="model.itemsInRange" style="width: 100%; height: 300px;"></div>
+                        </div>
+						<div ng-show="!model.isLoading && model.results.length" style="margin: 7px">
+                            <div timeline id="timeline" data="model.results" selected-data="model.selectedResult" items-in-range="model.itemsInRange"></div>
+                        </div>
+                        <div>
+                            
+
+                            
+                         <div class="post entry">
+                         <div ng-show="model.selectedResult.snippet.length">
+                                <a ng-click="addToStory(model.selectedResult)" class="btn btn-primary" href=""><i class="icon-plus"></i> Add to Story</a>
+                            </div>
+                         <div class="pull-right">
+                                <img ng-class="{'small-image': !model.selectedResult.isShowingImage }" style="" ng-mouseenter="showImage(model.selectedResult)" ng-mouseleave="hideImage(model.selectedResult)" ng-src="{{ model.selectedResult.imageurl }}" alt=""/>
+                                
+                            </div>
+                            <h2>{{ model.selectedResult.heading }}</h2>
+                            <h3>{{ model.selectedResult.title }}</h3>
+                            <h4>{{ model.selectedResult.date }}</h4>
+                            <p ng-show="!model.selectedResult.fulltext.text.length">{{ model.selectedResult.snippet }}</p>
+                            <div ng-bind-html-unsafe="model.selectedResult.fulltext.text">
+                            </div>
+                         </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

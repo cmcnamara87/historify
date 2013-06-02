@@ -1,0 +1,58 @@
+<style type="text/css">
+    .small-image {
+        width: 50px;
+    }
+</style>
+<div class="container" ng-init="init()">
+    <div class="row">
+       <div class="story-header span12">
+       	 	<h1>{{ model.story.name }}</h1>
+       	 	<p class="description">{{ model.story.description }}</p>
+       </div>
+    </div>
+    <div class="row">
+        <div class="span9">
+            	<div ng-repeat="item in model.story.items">
+            		<div class="post entry" ng-show="item.beforeText.length">
+            		<div>" {{ item.beforeText }} "</div>
+            		</div>
+            		<div class="post entry">
+	                    <div class="pull-right">
+	                       <a href='{{ item.imageurl }}' target='_blank'><img style="margin-left:10px;" ng-class="{'small-image': !item.isShowingImage }" style="" ng-mouseenter="showImage(item)" ng-mouseleave="hideImage(item)" ng-src="{{ item.imageurl }}" alt=""/></a>
+	                    </div>
+	                    <h3>{{ item.heading }}</h3>
+	                    <h4>{{ item.title }}</h4>
+	                    <p ng-show="!item.isShowingText">{{ item.snippet }}</p>
+	                    <p ng-show="item.isShowingText" ng-bind-html-unsafe="item.fulltext.text"></p>
+	                    <div ng-show="!item.isShowingText">
+	                        <a class="btn" style="margin-top:15px;" href="" ng-click="showMoreText(item)">More</a>
+	                        <a class="btn" style="margin-top:15px; margin-left:10px;" target='_blank' href='{{ item.pdf }}'>View Newspaper</a>
+	                    </div>
+	                    <div ng-show="item.isShowingText">
+	                        <a class="btn" style="margin-top:15px;" href="" ng-click="showLessText(item)">Less</a>
+	                        <a class="btn" style="margin-top:15px; margin-left:10px;" target='_blank' href='{{ item.pdf }}'>View Newspaper</a>
+	                    </div>
+            		</div>
+                </div>
+            </div>
+
+ <div class="story span3">
+		   <!-- <div class="entry"> -->
+			   <div class="row">
+				   	<div class="user span3">
+				   		<i class="icon-user"></i> 
+				   	</div>
+			        <div class="span3">
+				        <div class="entry story-info">
+				            <p>{{ model.story.author }}</p>
+				        </div>
+		        	</div>
+			 <!--   </div> -->
+	        </div>
+        </div>
+
+        </div>
+    </div>
+</div>      
+
+<div timeline id="timeline" data="model.story.items" selected-data="model.selectedItem"></div>

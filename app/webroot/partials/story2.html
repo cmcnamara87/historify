@@ -1,0 +1,58 @@
+<style type="text/css">
+    .small-image {
+        width: 50px;
+    }
+</style>
+<div class="container" ng-init="init()">
+    <div class="row">
+        <div class="span8">
+            <h1>Story page</h1>
+            <div>
+                <h3>{{ model.story.name }}</h3>
+            </div>
+            <div>
+                {{ model.story.slugline }}
+            </div>
+            <div>
+                {{ model.story.description }}
+            </div>
+            <div>
+                <div timeline data="model.story.items" selected-data="model.selectedItem" items-in-range="model.itemsInRange"></div>
+                <div ng-repeat="item in model.story.items">
+                    <div>
+                        {{ item.beforeText }}
+                    </div>
+
+                    <div class="pull-right">
+                        <a href='{{ item.imageurl }}' target='_blank'><img ng-class="{'small-image': !item.isShowingImage }" style="" ng-mouseenter="showImage(item)" ng-mouseleave="hideImage(item)" ng-src="{{ item.imageurl }}" alt=""/></a>
+                    </div>
+
+                    <div>
+                        {{ item.heading }}
+                    </div>
+                    <div>
+                        {{ item.title }}
+                    </div>
+                    <div ng-show="!item.isShowingText">
+                        {{ item.snippet }}
+                    </div>
+                    <div ng-show="item.isShowingText" ng-bind-html-unsafe="item.fulltext.text">
+                        {{ item.fulltext.text }}
+                    </div>
+                    <div ng-show="!item.isShowingText">
+                        <a class="btn" href="" ng-click="showMoreText(item)">More</a>
+                    </div>
+                    <div ng-show="item.isShowingText">
+                        <a class="btn" href="" ng-click="showLessText(item)">Less</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="span4">
+            <h2>Story column</h2>
+        </div>
+    </div>
+</div>

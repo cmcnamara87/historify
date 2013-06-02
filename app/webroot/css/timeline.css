@@ -1,0 +1,178 @@
+
+
+div.timeline-frame {
+    overflow: hidden;
+}
+
+div.timeline-axis {
+    border-color:rgb(128,128, 128);
+    border-top-style: solid;
+}
+div.timeline-axis-grid {
+    border-left-style: solid;
+    border-width: 1px;
+    border-color:#fff;
+}
+div.timeline-axis-grid-minor {
+    border-color: #fff solid thin;
+}
+div.timeline-axis-grid-major {
+    border-color: #bfbfbf;
+}
+div.timeline-axis-text {
+    padding: 3px;
+    white-space: nowrap;
+    text-shadow: 0px 1px 0 #ffffff;
+}
+
+div.timeline-axis-text-minor {
+    color:rgb(128,128, 128)
+}
+
+div.timeline-axis-text-major {
+    font-weight: bold;
+    font-size: 1.4em;
+    color:#007DFF
+}
+
+div.timeline-event {
+    color: #1A1A1A;
+    border-color: #97B0F8;
+    display: inline-block;
+}
+
+
+/*
+div.timeline-event-cluster {
+    /* TODO: use another color or pattern? 
+    background: #97B0F8 url('img/cluster_bg.png');
+    color: white;
+}
+div.timeline-event-cluster div.timeline-event-dot {
+    border: solid thin rgb(179, 213, 100);
+    border-radius: 5px;
+    -moz-border-radius: 5px; 
+}*/
+
+div.timeline-event-box {
+    text-align: center;
+    color: #fcfcfc;
+    background-color: rgb(128,128, 128);
+    *box-shadow: 0 0 0.3em #606060,  0  1px 0 #ffffff;
+    border-radius: 1px;
+    -moz-border-radius: 1px; /* For Firefox 3.6 and older */
+    height: 30px ;
+    overflow: hidden;
+}
+
+div.timeline-event-box:hover {
+
+}
+
+
+div.timeline-event-dot {
+    border: solid 1px rgb(179, 213, 100);
+    border-radius: 5px;
+    height: 5px;
+    width: 5px;
+}
+
+div.timeline-event-range {
+    /**border-style: solid;
+    /**border-width: 1px;
+    /**border-radius: 2px;
+    -moz-border-radius: 2px;  /* For Firefox 3.6 and older */
+}
+
+div.timeline-event-range-drag-left {
+    cursor: w-resize;
+    z-index: 1000;
+}
+
+div.timeline-event-range-drag-right {
+    cursor: e-resize;
+    z-index: 1000;
+}
+
+
+div.timeline-event-line {
+    border-left: rgb(128,128, 128) solid thin;
+}
+
+
+div.timeline-event-content {
+
+    white-space: nowrap;
+    overflow: hidden;
+    
+}
+
+
+div.timeline-groups-axis {
+}   
+
+div.timeline-groups-text {
+    
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+div.timeline-currenttime {
+    
+    width: 2px;
+}
+
+div.timeline-customtime {
+    width: 2px;
+    cursor: move;
+}
+
+div.timeline-navigation {
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+    color: gray;
+
+    background-color: #F5F5F5;
+    border-radius: 1px;
+    -moz-border-radius: 1px;  /* For Firefox 3.6 and older */
+}
+
+div.timeline-navigation-new, div.timeline-navigation-delete,
+div.timeline-navigation-zoom-in,  div.timeline-navigation-zoom-out,
+div.timeline-navigation-move-left, div.timeline-navigation-move-right {
+    cursor: pointer;
+    padding: 10px 10px;
+    float: left;
+    text-decoration: none;
+    border-color: #BEBEBE; /* border is used for the separator between new and navigation buttons */
+
+    width: 16px;
+    height: 16px;
+}
+
+div.timeline-navigation-new {
+    background: url('img/16/new.png') no-repeat center;
+}
+
+div.timeline-navigation-delete {
+    padding: 0px;
+    padding-left: 5px;
+    background: url('img/16/delete.png') no-repeat center;
+}
+
+div.timeline-navigation-zoom-in {
+    background: url('img/16/zoomin.png') no-repeat center;
+}
+
+div.timeline-navigation-zoom-out {
+    background: url('img/16/zoomout.png') no-repeat center;
+}
+
+div.timeline-navigation-move-left {
+    background: url('img/16/moveleft.png') no-repeat center;
+}
+
+div.timeline-navigation-move-right {
+    background: url('img/16/moveright.png') no-repeat center;
+}

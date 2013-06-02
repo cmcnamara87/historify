@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span4">
+            <h2>Your Story</h2>
+            <a class="btn btn-success" ng-click="publishStory(model.story)">Publish Story</a>
+            <div>
+                <input ng-model="model.story.title" type="text" placeholder="Title"/>
+            </div>
+            <div>
+                <input ng-model="model.story.slugline" type="text" placeholder="Slugline"/>
+            </div>
+            <div>
+                <input ng-model="model.story.author" type="text" placeholder="Author"/>
+            </div>
+            <div>
+                <textarea ng-model="model.story.description"></textarea>
+            </div>
+
+            <div>
+                <div ng-repeat="item in model.story.items">
+                    <div>
+                        <textarea ng-model="item.beforeText"></textarea>
+                    </div>
+                    <div>
+                        {{ item.heading }}
+                    </div>
+                    <div>
+                        {{ item.title }}
+                    </div>
+                    <div>
+                        {{ item.snippet }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span8" style="overflow-y: scroll">
+            <div ng-controller="SearchCtrl">
+
+
+                <h2>Searcher</h2>
+                <div>
+                    <input type="text" ng-model="query"/><a class="btn btn-primary" href="" ng-click="doSearch(query)">Search</a>
+
+                    <div>
+                        <div ng-show="model.isLoading">
+                            its loading
+                        </div>
+                        <div ng-show="!model.isLoading && model.results.length == 0 && query.length">
+                            no results
+                        </div>
+                        <div ng-show="!model.isLoading && model.results.length" style="margin: 7px">
+                            <div timeline data="model.results" selected-data="model.selectedResult" items-in-range="model.itemsInRange"></div>
+                        </div>
+                        <div ng-show="!model.selectedResult.snippet.length">
+                            <div map data="model.itemsInRange" style="width: 100%; height: 300px;"></div>
+                        </div>
+
+                        	
+                        <div>
+                                                        
+                            <div class="pull-right">
+                                <img ng-class="{'small-image': !item.isShowingImage }" style="" ng-mouseenter="showImage(item)" ng-mouseleave="hideImage(item)" ng-src="{{ model.selectedResult.imageurl }}" alt=""/>
+                            </div>
+                            <div>
+                                {{ model.selectedResult.heading }}
+                            </div>
+                            <div>
+                                {{ model.selectedResult.title }}
+                            </div>
+                            <div>
+                                {{ model.selectedResult.date }}
+                            </div>
+                            <div ng-show="!model.selectedResult.fulltext.text.length">
+                                {{ model.selectedResult.snippet }}
+                            </div>
+                            <div ng-bind-html-unsafe="model.selectedResult.fulltext.text">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
